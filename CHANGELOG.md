@@ -1,5 +1,5 @@
 
-# Linna Database Djmps Changelog
+# Linna Database Dumps Changelog
 
 All notable changes to this project will be documented in this file.
 
