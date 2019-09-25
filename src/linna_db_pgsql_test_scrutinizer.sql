@@ -12,7 +12,7 @@ SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
+-- SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
@@ -36,7 +36,7 @@ SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
+-- SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
@@ -541,67 +541,12 @@ COPY public.user_role (user_role_id, user_id, role_id, last_update) FROM stdin;
 \.
 
 
---
--- TOC entry 3090 (class 0 OID 0)
--- Dependencies: 197
--- Name: login_attempt_login_attempt_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.login_attempt_login_attempt_id_seq', 1, false);
-
-
---
--- TOC entry 3091 (class 0 OID 0)
--- Dependencies: 199
--- Name: permission_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.permission_permission_id_seq', 7, false);
-
-
---
--- TOC entry 3092 (class 0 OID 0)
--- Dependencies: 203
--- Name: role_permission_role_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.role_permission_role_permission_id_seq', 12, false);
-
-
---
--- TOC entry 3093 (class 0 OID 0)
--- Dependencies: 201
--- Name: role_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.role_role_id_seq', 4, false);
-
-
---
--- TOC entry 3094 (class 0 OID 0)
--- Dependencies: 208
--- Name: user_permission_user_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.user_permission_user_permission_id_seq', 9, false);
-
-
---
--- TOC entry 3095 (class 0 OID 0)
--- Dependencies: 210
--- Name: user_role_user_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.user_role_user_role_id_seq', 14, false);
-
-
---
--- TOC entry 3096 (class 0 OID 0)
--- Dependencies: 206
--- Name: user_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.user_user_id_seq', 8, false);
+ALTER SEQUENCE public.permission_permission_id_seq RESTART WITH 7 INCREMENT BY 1;
+ALTER SEQUENCE public.role_role_id_seq RESTART WITH 4 INCREMENT BY 1;
+ALTER SEQUENCE public.role_permission_role_permission_id_seq RESTART WITH 12 INCREMENT BY 1;
+ALTER SEQUENCE public.user_user_id_seq RESTART WITH 8 INCREMENT BY 1;
+ALTER SEQUENCE public.user_permission_user_permission_id_seq RESTART WITH 9 INCREMENT BY 1;
+ALTER SEQUENCE public.user_role_user_role_id_seq RESTART WITH 14 INCREMENT BY 1;
 
 
 --
