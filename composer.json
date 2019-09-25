@@ -1,0 +1,20 @@
+{
+    "name": "linna/db-dumps",
+    "description": "Sql dumps containing databases for the linna apps.",
+    "keywords": [
+        "mysql",
+        "postgresql",
+        "php"
+    ],
+    "homepage": "https://github.com/linna",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Rapetti",
+            "email": "sebastian.rapetti@tim.it"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    }
+}
