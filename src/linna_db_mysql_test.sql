@@ -30,6 +30,7 @@ CREATE TABLE `login_attempt` (
   `session_id` char(255) DEFAULT NULL,
   `ip` char(39) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`login_attempt_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -55,6 +56,7 @@ CREATE TABLE `permission` (
   `permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` tinytext,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`permission_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
@@ -66,7 +68,13 @@ CREATE TABLE `permission` (
 
 LOCK TABLES `permission` WRITE;
 /*!40000 ALTER TABLE `permission` DISABLE KEYS */;
-INSERT INTO `permission` VALUES (1,'see users','Get a list of all Users','2018-10-08 15:39:39'),(2,'update user','Update a User','2018-10-08 15:39:52'),(3,'delete user','Delete a User','2018-10-08 15:39:52'),(4,'create user','Create a User','2018-10-08 15:39:52'),(5,'enable user','Enable a User','2018-10-08 15:39:52'),(6,'disable user','Disable a User','2018-10-08 15:39:52');
+INSERT INTO `permission` VALUES 
+(1,'see users','Get a list of all Users','2018-10-08 15:39:39','2018-10-08 15:39:39'),
+(2,'update user','Update a User','2018-10-08 15:39:39','2018-10-08 15:39:52'),
+(3,'delete user','Delete a User','2018-10-08 15:39:39','2018-10-08 15:39:52'),
+(4,'create user','Create a User','2018-10-08 15:39:39','2018-10-08 15:39:52'),
+(5,'enable user','Enable a User','2018-10-08 15:39:39','2018-10-08 15:39:52'),
+(6,'disable user','Disable a User','2018-10-08 15:39:39','2018-10-08 15:39:52');
 /*!40000 ALTER TABLE `permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,6 +90,7 @@ CREATE TABLE `role` (
   `name` varchar(32) NOT NULL,
   `description` tinytext,
   `active` tinyint(1) NOT NULL DEFAULT '0',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -93,7 +102,10 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
-INSERT INTO `role` VALUES (1,'Administrator','System Administrators',1,'2017-03-14 18:21:09'),(2,'Power Users','System Power Users',1,'2018-10-08 16:00:34'),(3,'Users','System Users',1,'2018-10-08 16:00:34');
+INSERT INTO `role` VALUES 
+(1,'Administrator','System Administrators',1,'2017-03-14 18:21:09','2017-03-14 18:21:09'),
+(2,'Power Users','System Power Users',1,'2017-03-14 18:21:09','2018-10-08 16:00:34'),
+(3,'Users','System Users',1,'2017-03-14 18:21:09','2018-10-08 16:00:34');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,6 +120,7 @@ CREATE TABLE `role_permission` (
   `role_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `role_id` int(10) unsigned DEFAULT NULL,
   `permission_id` int(10) unsigned DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`role_permission_id`),
   UNIQUE KEY `unique_role_permission` (`role_id`,`permission_id`) /*!80000 INVISIBLE */,
@@ -124,7 +137,18 @@ CREATE TABLE `role_permission` (
 
 LOCK TABLES `role_permission` WRITE;
 /*!40000 ALTER TABLE `role_permission` DISABLE KEYS */;
-INSERT INTO `role_permission` VALUES (1,1,1,'2018-11-13 10:23:46'),(2,1,2,'2018-11-13 10:23:46'),(3,1,3,'2018-11-13 10:23:46'),(4,1,4,'2018-11-13 10:23:46'),(5,1,5,'2018-11-13 10:23:46'),(6,1,6,'2018-11-13 10:23:46'),(7,2,1,'2018-11-13 10:24:01'),(8,2,2,'2018-11-13 10:25:02'),(9,2,5,'2018-11-13 10:25:02'),(10,2,6,'2018-11-13 10:25:02'),(11,3,1,'2018-11-13 10:25:09');
+INSERT INTO `role_permission` VALUES 
+(1,1,1,'2018-11-13 10:23:46','2018-11-13 10:23:46'),
+(2,1,2,'2018-11-13 10:23:46','2018-11-13 10:23:46'),
+(3,1,3,'2018-11-13 10:23:46','2018-11-13 10:23:46'),
+(4,1,4,'2018-11-13 10:23:46','2018-11-13 10:23:46'),
+(5,1,5,'2018-11-13 10:23:46','2018-11-13 10:23:46'),
+(6,1,6,'2018-11-13 10:23:46','2018-11-13 10:23:46'),
+(7,2,1,'2018-11-13 10:23:46','2018-11-13 10:24:01'),
+(8,2,2,'2018-11-13 10:23:46','2018-11-13 10:25:02'),
+(9,2,5,'2018-11-13 10:23:46','2018-11-13 10:25:02'),
+(10,2,6,'2018-11-13 10:23:46','2018-11-13 10:25:02'),
+(11,3,1,'2018-11-13 10:23:46','2018-11-13 10:25:09');
 /*!40000 ALTER TABLE `role_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,6 +162,7 @@ DROP TABLE IF EXISTS `session`;
 CREATE TABLE `session` (
   `session_id` char(128) NOT NULL,
   `session_data` varchar(3096) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -167,7 +192,7 @@ CREATE TABLE `user` (
   `email` char(64) DEFAULT NULL,
   `password` char(255) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `uuid_UNIQUE` (`uuid`)
@@ -195,6 +220,7 @@ CREATE TABLE `user_permission` (
   `user_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned DEFAULT NULL,
   `permission_id` int(10) unsigned DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_permission_id`),
   UNIQUE KEY `unique_user_permission` (`user_id`,`permission_id`),
@@ -211,7 +237,13 @@ CREATE TABLE `user_permission` (
 
 LOCK TABLES `user_permission` WRITE;
 /*!40000 ALTER TABLE `user_permission` DISABLE KEYS */;
-INSERT INTO `user_permission` VALUES (3,4,5,'2018-11-13 18:34:54'),(4,4,6,'2018-11-13 18:34:54'),(5,5,3,'2018-11-13 18:34:54'),(6,5,4,'2018-11-13 18:34:54'),(7,5,5,'2018-11-13 18:34:54'),(8,5,6,'2018-11-13 18:34:54');
+INSERT INTO `user_permission` VALUES 
+(3,4,5,'2018-11-13 18:34:54','2018-11-13 18:34:54'),
+(4,4,6,'2018-11-13 18:34:54','2018-11-13 18:34:54'),
+(5,5,3,'2018-11-13 18:34:54','2018-11-13 18:34:54'),
+(6,5,4,'2018-11-13 18:34:54','2018-11-13 18:34:54'),
+(7,5,5,'2018-11-13 18:34:54','2018-11-13 18:34:54'),
+(8,5,6,'2018-11-13 18:34:54','2018-11-13 18:34:54');
 /*!40000 ALTER TABLE `user_permission` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,6 +258,7 @@ CREATE TABLE `user_role` (
   `user_role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned DEFAULT NULL,
   `role_id` int(10) unsigned DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_role_id`),
   UNIQUE KEY `unique_user_role` (`user_id`,`role_id`),
@@ -242,7 +275,14 @@ CREATE TABLE `user_role` (
 
 LOCK TABLES `user_role` WRITE;
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-INSERT INTO `user_role` VALUES (1,1,1,'2018-11-05 19:58:33'),(8,2,2,'2018-11-13 10:47:49'),(9,3,2,'2018-11-13 10:47:49'),(10,4,3,'2018-11-13 10:47:49'),(11,5,3,'2018-11-13 10:47:49'),(12,6,3,'2018-11-13 10:47:49'),(13,7,3,'2018-11-13 10:47:49');
+INSERT INTO `user_role` VALUES 
+(1,1,1,'2018-11-05 19:58:33','2018-11-05 19:58:33'),
+(8,2,2,'2018-11-05 19:58:33','2018-11-13 10:47:49'),
+(9,3,2,'2018-11-05 19:58:33','2018-11-13 10:47:49'),
+(10,4,3,'2018-11-05 19:58:33','2018-11-13 10:47:49'),
+(11,5,3,'2018-11-05 19:58:33','2018-11-13 10:47:49'),
+(12,6,3,'2018-11-05 19:58:33','2018-11-13 10:47:49'),
+(13,7,3,'2018-11-05 19:58:33','2018-11-13 10:47:49');
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

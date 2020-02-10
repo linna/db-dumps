@@ -74,6 +74,7 @@ CREATE TABLE public.login_attempt (
     session_id character varying(255) NOT NULL,
     ip inet NOT NULL,
     date_time timestamp without time zone NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -114,6 +115,7 @@ CREATE TABLE public.permission (
     permission_id integer NOT NULL,
     name character varying(32) NOT NULL,
     description text,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -155,6 +157,7 @@ CREATE TABLE public.role (
     name character varying(32) NOT NULL,
     description text,
     active boolean DEFAULT false NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -170,6 +173,7 @@ CREATE TABLE public.role_permission (
     role_permission_id integer NOT NULL,
     role_id integer,
     permission_id integer,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -234,6 +238,7 @@ ALTER SEQUENCE public.role_role_id_seq OWNED BY public.role.role_id;
 CREATE TABLE public.session (
     session_id character varying(255) NOT NULL,
     session_data character varying(4096) NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -269,6 +274,7 @@ CREATE TABLE public.user_permission (
     user_permission_id integer NOT NULL,
     user_id integer NOT NULL,
     permission_id integer NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -309,6 +315,7 @@ CREATE TABLE public.user_role (
     user_role_id integer NOT NULL,
     user_id integer NOT NULL,
     role_id integer NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 

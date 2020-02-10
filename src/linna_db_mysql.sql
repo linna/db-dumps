@@ -30,6 +30,7 @@ CREATE TABLE `login_attempt` (
   `session_id` char(255) DEFAULT NULL,
   `ip` char(39) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`login_attempt_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -55,6 +56,7 @@ CREATE TABLE `permission` (
   `permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` tinytext,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`permission_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -72,6 +74,7 @@ CREATE TABLE `role` (
   `name` varchar(32) NOT NULL,
   `description` tinytext,
   `active` tinyint(1) NOT NULL DEFAULT '0',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -88,6 +91,7 @@ CREATE TABLE `role_permission` (
   `role_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `role_id` int(10) unsigned DEFAULT NULL,
   `permission_id` int(10) unsigned DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`role_permission_id`),
   UNIQUE KEY `unique_role_permission` (`role_id`,`permission_id`) /*!80000 INVISIBLE */,
@@ -108,6 +112,7 @@ DROP TABLE IF EXISTS `session`;
 CREATE TABLE `session` (
   `session_id` char(128) NOT NULL,
   `session_data` varchar(3096) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -128,7 +133,7 @@ CREATE TABLE `user` (
   `email` char(64) DEFAULT NULL,
   `password` char(255) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `uuid_UNIQUE` (`uuid`)
@@ -146,6 +151,7 @@ CREATE TABLE `user_permission` (
   `user_permission_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned DEFAULT NULL,
   `permission_id` int(10) unsigned DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_permission_id`),
   UNIQUE KEY `unique_user_permission` (`user_id`,`permission_id`),
@@ -167,6 +173,7 @@ CREATE TABLE `user_role` (
   `user_role_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned DEFAULT NULL,
   `role_id` int(10) unsigned DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_role_id`),
   UNIQUE KEY `unique_user_role` (`user_id`,`role_id`),
