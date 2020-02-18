@@ -74,6 +74,7 @@ CREATE TABLE public.login_attempt (
     session_id character varying(255) NOT NULL,
     ip inet NOT NULL,
     date_time timestamp without time zone NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -114,6 +115,7 @@ CREATE TABLE public.permission (
     permission_id integer NOT NULL,
     name character varying(32) NOT NULL,
     description text,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -155,6 +157,7 @@ CREATE TABLE public.role (
     name character varying(32) NOT NULL,
     description text,
     active boolean DEFAULT false NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -170,6 +173,7 @@ CREATE TABLE public.role_permission (
     role_permission_id integer NOT NULL,
     role_id integer,
     permission_id integer,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -234,6 +238,7 @@ ALTER SEQUENCE public.role_role_id_seq OWNED BY public.role.role_id;
 CREATE TABLE public.session (
     session_id character varying(255) NOT NULL,
     session_data character varying(4096) NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -269,6 +274,7 @@ CREATE TABLE public.user_permission (
     user_permission_id integer NOT NULL,
     user_id integer NOT NULL,
     permission_id integer NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -309,6 +315,7 @@ CREATE TABLE public.user_role (
     user_role_id integer NOT NULL,
     user_id integer NOT NULL,
     role_id integer NOT NULL,
+    created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
@@ -437,13 +444,13 @@ COPY public.login_attempt (login_attempt_id, user_name, session_id, ip, date_tim
 -- Data for Name: permission; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.permission (permission_id, name, description, last_update) FROM stdin;
-1	see users	Get a list of all Users	2018-10-08 15:39:39
-2	update user	Update a User	2018-10-08 15:39:52
-3	delete user	Delete a User	2018-10-08 15:39:52
-4	create user	Create a User	2018-10-08 15:39:52
-5	enable user	Enable a User	2018-10-08 15:39:52
-6	disable user	Disable a User	2018-10-08 15:39:52
+COPY public.permission (permission_id, name, description, created, last_update) FROM stdin;
+1	see users	Get a list of all Users	2018-10-08 15:39:39	2018-10-08 15:39:39
+2	update user	Update a User	2018-10-08 15:39:52	2018-10-08 15:39:52
+3	delete user	Delete a User	2018-10-08 15:39:52	2018-10-08 15:39:52
+4	create user	Create a User	2018-10-08 15:39:52	2018-10-08 15:39:52
+5	enable user	Enable a User	2018-10-08 15:39:52	2018-10-08 15:39:52
+6	disable user	Disable a User	2018-10-08 15:39:52	2018-10-08 15:39:52
 \.
 
 
@@ -453,10 +460,10 @@ COPY public.permission (permission_id, name, description, last_update) FROM stdi
 -- Data for Name: role; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.role (role_id, name, description, active, last_update) FROM stdin;
-1	Administrator	System Administrators	t	2017-03-14 18:21:09
-2	Power Users	System Power Users	t	2018-10-08 16:00:34
-3	Users	System Users	t	2018-10-08 16:00:34
+COPY public.role (role_id, name, description, active, created, last_update) FROM stdin;
+1	Administrator	System Administrators	t	2017-03-14 18:21:09	2017-03-14 18:21:09
+2	Power Users	System Power Users	t	2018-10-08 16:00:34	2018-10-08 16:00:34
+3	Users	System Users	t	2018-10-08 16:00:34	2018-10-08 16:00:34
 \.
 
 
@@ -466,18 +473,18 @@ COPY public.role (role_id, name, description, active, last_update) FROM stdin;
 -- Data for Name: role_permission; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.role_permission (role_permission_id, role_id, permission_id, last_update) FROM stdin;
-1	1	1	2018-11-13 10:23:46
-2	1	2	2018-11-13 10:23:46
-3	1	3	2018-11-13 10:23:46
-4	1	4	2018-11-13 10:23:46
-5	1	5	2018-11-13 10:23:46
-6	1	6	2018-11-13 10:23:46
-7	2	1	2018-11-13 10:24:01
-8	2	2	2018-11-13 10:25:02
-9	2	5	2018-11-13 10:25:02
-10	2	6	2018-11-13 10:25:02
-11	3	1	2018-11-13 10:25:09
+COPY public.role_permission (role_permission_id, role_id, permission_id, created, last_update) FROM stdin;
+1	1	1	2018-11-13 10:23:46	2018-11-13 10:23:46
+2	1	2	2018-11-13 10:23:46	2018-11-13 10:23:46
+3	1	3	2018-11-13 10:23:46	2018-11-13 10:23:46
+4	1	4	2018-11-13 10:23:46	2018-11-13 10:23:46
+5	1	5	2018-11-13 10:23:46	2018-11-13 10:23:46
+6	1	6	2018-11-13 10:23:46	2018-11-13 10:23:46
+7	2	1	2018-11-13 10:24:01	2018-11-13 10:24:01
+8	2	2	2018-11-13 10:25:02	2018-11-13 10:25:02
+9	2	5	2018-11-13 10:25:02	2018-11-13 10:25:02
+10	2	6	2018-11-13 10:25:02	2018-11-13 10:25:02
+11	3	1	2018-11-13 10:25:09	2018-11-13 10:25:09
 \.
 
 
@@ -514,13 +521,13 @@ COPY public."user" (user_id, uuid, name, description, email, password, active, c
 -- Data for Name: user_permission; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.user_permission (user_permission_id, user_id, permission_id, last_update) FROM stdin;
-3	4	5	2018-11-13 18:34:54
-4	4	6	2018-11-13 18:34:54
-5	5	3	2018-11-13 18:34:54
-6	5	4	2018-11-13 18:34:54
-7	5	5	2018-11-13 18:34:54
-8	5	6	2018-11-13 18:34:54
+COPY public.user_permission (user_permission_id, user_id, permission_id, created, last_update) FROM stdin;
+3	4	5	2018-11-13 18:34:54	2018-11-13 18:34:54
+4	4	6	2018-11-13 18:34:54	2018-11-13 18:34:54
+5	5	3	2018-11-13 18:34:54	2018-11-13 18:34:54
+6	5	4	2018-11-13 18:34:54	2018-11-13 18:34:54
+7	5	5	2018-11-13 18:34:54	2018-11-13 18:34:54
+8	5	6	2018-11-13 18:34:54	2018-11-13 18:34:54
 \.
 
 
@@ -530,23 +537,78 @@ COPY public.user_permission (user_permission_id, user_id, permission_id, last_up
 -- Data for Name: user_role; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.user_role (user_role_id, user_id, role_id, last_update) FROM stdin;
-1	1	1	2018-11-05 19:58:33
-8	2	2	2018-11-13 10:47:49
-9	3	2	2018-11-13 10:47:49
-10	4	3	2018-11-13 10:47:49
-11	5	3	2018-11-13 10:47:49
-12	6	3	2018-11-13 10:47:49
-13	7	3	2018-11-13 10:47:49
+COPY public.user_role (user_role_id, user_id, role_id, created, last_update) FROM stdin;
+1	1	1	2018-11-05 19:58:33	2018-11-05 19:58:33
+8	2	2	2018-11-13 10:47:49	2018-11-13 10:47:49
+9	3	2	2018-11-13 10:47:49	2018-11-13 10:47:49
+10	4	3	2018-11-13 10:47:49	2018-11-13 10:47:49
+11	5	3	2018-11-13 10:47:49	2018-11-13 10:47:49
+12	6	3	2018-11-13 10:47:49	2018-11-13 10:47:49
+13	7	3	2018-11-13 10:47:49	2018-11-13 10:47:49
 \.
 
 
-ALTER SEQUENCE public.permission_permission_id_seq RESTART WITH 7 INCREMENT BY 1;
-ALTER SEQUENCE public.role_role_id_seq RESTART WITH 4 INCREMENT BY 1;
-ALTER SEQUENCE public.role_permission_role_permission_id_seq RESTART WITH 12 INCREMENT BY 1;
-ALTER SEQUENCE public.user_user_id_seq RESTART WITH 8 INCREMENT BY 1;
-ALTER SEQUENCE public.user_permission_user_permission_id_seq RESTART WITH 9 INCREMENT BY 1;
-ALTER SEQUENCE public.user_role_user_role_id_seq RESTART WITH 14 INCREMENT BY 1;
+--
+-- TOC entry 3090 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: login_attempt_login_attempt_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.login_attempt_login_attempt_id_seq', 1, false);
+
+
+--
+-- TOC entry 3091 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: permission_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.permission_permission_id_seq', 7, false);
+
+
+--
+-- TOC entry 3092 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: role_permission_role_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.role_permission_role_permission_id_seq', 12, false);
+
+
+--
+-- TOC entry 3093 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: role_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.role_role_id_seq', 4, false);
+
+
+--
+-- TOC entry 3094 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: user_permission_user_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.user_permission_user_permission_id_seq', 9, false);
+
+
+--
+-- TOC entry 3095 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: user_role_user_role_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.user_role_user_role_id_seq', 14, false);
+
+
+--
+-- TOC entry 3096 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: user_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.user_user_id_seq', 8, false);
 
 
 --
