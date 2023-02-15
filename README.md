@@ -22,7 +22,6 @@ This package contains sql scripts for create the database used from framework, a
 ### Postgresql
    * `linna_db_pgsql.sql` database without data
    * `linna_db_pgsql_test.sql` database with data for tests
-   * `linna_db_pgsql_test_scrutinizer.sql` database with data for tests in Scrutinizer CI
 
 # Require
    * Mysql >= 5.5
