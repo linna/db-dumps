@@ -237,7 +237,7 @@ ALTER SEQUENCE public.role_role_id_seq OWNED BY public.role.role_id;
 
 CREATE TABLE public.session (
     session_id character varying(255) NOT NULL,
-    session_data character varying(4096) NOT NULL,
+    session_data character varying(8192) NOT NULL,
     created timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     last_update timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
