@@ -205,7 +205,14 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'ea172268-1d16-428b-9666-4d087475cf74','root','System User',NULL,'$2y$11$4IAn6SRaB0osPz8afZC5D.CmTrBGxnb5FQEygPjDirK9SWE/u8YuO',1,'2015-02-14 10:39:00','2017-10-29 17:59:18'),(2,'fda9da6f-973a-4212-b151-f731128349b9','User_0','Descrizione User_0',NULL,'$2y$11$IeS/XWjIy2CBE6.hLJhruuHedtq.wm.PI6VJpPmVaxCPct2wSWRJa',0,'2015-08-07 18:50:44','2018-07-12 21:23:16'),(3,'5ab77795-ad18-4150-87e3-cffb4b47d3c9','User_1','Descrizione User_1',NULL,'$2y$11$Jjs/IB4cKWtU/ZKwb5t6eeXbR0iWrOzqUyJDriSfcOY/dRrpf9zKC',1,'2015-08-07 18:50:44','2017-10-29 17:59:18'),(4,'9eb97425-8f44-4ba1-a4b5-89b65026f30c','User_2','Descrizione User_2',NULL,'$2y$11$pJalB4tJwvD3ZHSAvhIFE.bZFC7M3QdXRJ/SOBPU7ylqQ2aW9spY.',1,'2015-08-07 18:50:44','2017-10-29 17:59:18'),(5,'f6dbe6dd-89e8-40e5-acd6-5873caec060a','User_3','Descrizione User_3',NULL,'$2y$11$J/9GjpefJUvqO1clihPkEuxZrWVwDIXk1zR9XAjOEzK5HI90cr5FO',0,'2015-08-07 18:50:45','2017-10-29 17:59:18'),(6,'1421bc55-e428-4604-b0f7-1d1b98855b2e','User_4','Descrizione User_4',NULL,'$2y$11$oC64K4.qGruuVqEgJV.Nxe7/f84jR2cSEywf3BmfmWnlM0wDO/ApG',0,'2015-08-07 18:50:45','2017-10-29 17:59:18'),(7,'a36ee340-a432-4d48-85f2-5cf3f708c4ce','User_5','Descrizione User_5',NULL,'$2y$11$aLl8Rdz3duayXTOpNqFCUOw4aIyPQOwIEsZCMfoVJ8ZjJajt4SpPe',0,'2015-08-07 18:50:45','2017-10-29 17:59:18');
+INSERT INTO `user` VALUES 
+(1,'ea172268-1d16-428b-9666-4d087475cf74','root','System User','root@test.com','$2y$11$4IAn6SRaB0osPz8afZC5D.CmTrBGxnb5FQEygPjDirK9SWE/u8YuO',1,'2015-02-14 10:39:00','2017-10-29 17:59:18'),
+(2,'fda9da6f-973a-4212-b151-f731128349b9','User_0','Descrizione User_0','user_0@test.com','$2y$11$IeS/XWjIy2CBE6.hLJhruuHedtq.wm.PI6VJpPmVaxCPct2wSWRJa',0,'2015-08-07 18:50:44','2018-07-12 21:23:16'),
+(3,'5ab77795-ad18-4150-87e3-cffb4b47d3c9','User_1','Descrizione User_1','user_1@test.com','$2y$11$Jjs/IB4cKWtU/ZKwb5t6eeXbR0iWrOzqUyJDriSfcOY/dRrpf9zKC',1,'2015-08-07 18:50:44','2017-10-29 17:59:18'),
+(4,'9eb97425-8f44-4ba1-a4b5-89b65026f30c','User_2','Descrizione User_2','user_2@test.com','$2y$11$pJalB4tJwvD3ZHSAvhIFE.bZFC7M3QdXRJ/SOBPU7ylqQ2aW9spY.',1,'2015-08-07 18:50:44','2017-10-29 17:59:18'),
+(5,'f6dbe6dd-89e8-40e5-acd6-5873caec060a','User_3','Descrizione User_3','user_3@test.com','$2y$11$J/9GjpefJUvqO1clihPkEuxZrWVwDIXk1zR9XAjOEzK5HI90cr5FO',0,'2015-08-07 18:50:45','2017-10-29 17:59:18'),
+(6,'1421bc55-e428-4604-b0f7-1d1b98855b2e','User_4','Descrizione User_4','user_4@test.com','$2y$11$oC64K4.qGruuVqEgJV.Nxe7/f84jR2cSEywf3BmfmWnlM0wDO/ApG',0,'2015-08-07 18:50:45','2017-10-29 17:59:18'),
+(7,'a36ee340-a432-4d48-85f2-5cf3f708c4ce','User_5','Descrizione User_5','user_5@test.com','$2y$11$aLl8Rdz3duayXTOpNqFCUOw4aIyPQOwIEsZCMfoVJ8ZjJajt4SpPe',0,'2015-08-07 18:50:45','2017-10-29 17:59:18');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
