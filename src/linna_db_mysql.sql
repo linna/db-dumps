@@ -111,7 +111,7 @@ DROP TABLE IF EXISTS `session`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `session` (
   `session_id` char(255) NOT NULL,
-  `session_data` varchar(8192) NOT NULL,,
+  `session_data` varchar(8192) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`session_id`)
